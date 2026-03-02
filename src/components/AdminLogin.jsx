@@ -30,8 +30,8 @@ export function AdminLogin({ onLogin }) {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
-      <Card className="w-full max-w-md">
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
+      <Card className="w-full max-w-md bg-white border-gray-100 shadow-sm">
         <CardHeader className="text-center space-y-4">
           <div className="flex justify-center">
             <div className="flex items-center gap-2 p-3 bg-primary rounded-full">

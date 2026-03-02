@@ -1149,7 +1149,7 @@ export function EnhancedEnrollmentForm({ onComplete }) {
                   ))}
                 </ul>
                 {(formData.enrolleeType === 'new' || formData.enrolleeType === 'transfer') && (
-                  <p className="text-xs text-blue-600 bg-blue-50 p-2 rounded mt-3">
+                  <p className="text-xs text-primary-700 bg-primary-50 p-2 rounded mt-3">
                     💡 You'll be able to upload these documents in a later step.
                   </p>
                 )}

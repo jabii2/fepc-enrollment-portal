@@ -512,131 +512,105 @@ export function EnrollmentForm({ onComplete }) {
   }
 
   return (
-    <div className="max-w-4xl mx-auto p-4 space-y-6">
-      {/* Progress Bar */}
-      <div className="space-y-4">
-        <Progress value={(currentStep / totalSteps) * 100} className="h-2" />
-        <div className="flex justify-between items-center">
-          {[1, 2, 3, 4, 5, 6].map((step) => (
-            <div key={step} className="flex flex-col items-center space-y-2">
-              <div className={`
-                flex items-center justify-center w-10 h-10 rounded-full border-2 transition-colors
-                ${currentStep >= step
-                  ? 'bg-primary text-primary-foreground border-primary'
-                  : 'bg-background border-border'
-                }
-              `}>
-                {getStepIcon(step)}
+    <div className="min-h-screen bg-gradient-to-br from-primary-50 to-secondary-50 py-8 px-4 sm:px-6">
+      <div className="max-w-4xl mx-auto space-y-8">
+        {/* Header */}
+        <div className="text-center mb-8">
+          <h1 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-2">Enrollment Form</h1>
+          <p className="text-gray-600">Step {currentStep} of {totalSteps}</p>
+        </div>
+
+        {/* Progress Bar */}
+        <div className="space-y-4">
+          <Progress value={(currentStep / totalSteps) * 100} className="h-3 rounded-full" />
+          <div className="flex justify-between items-center gap-2">
+            {[1, 2, 3, 4, 5, 6].map((step) => (
+              <div key={step} className="flex-1 flex flex-col items-center justify-center space-y-1">
+                <div className={`
+                  flex items-center justify-center w-10 h-10 rounded-full font-semibold border-2 transition-all duration-300
+                  ${currentStep >= step
+                    ? 'bg-gradient-to-r from-primary-500 to-primary-600 text-white border-primary-600 shadow-lg'
+                    : 'bg-gray-100 text-gray-400 border-gray-300'
+                  }
+                `}>
+                  {getStepIcon(step)}
+                </div>
+                <span className="text-xs hidden sm:inline-block text-gray-600 text-center font-medium leading-tight">
+                  {step === 1 && 'Enrollee'}
+                  {step === 2 && 'Academic'}
+                  {step === 3 && 'Subjects'}
+                  {step === 4 && 'Personal'}
+                  {step === 5 && 'Documents'}
+                  {step === 6 && 'Review'}
+                </span>
               </div>
-              <span className="text-sm hidden sm:block">
-                {step === 1 && 'Enrollee Type'}
-                {step === 2 && 'Academic'}
-                {step === 3 && 'Subjects'}
-                {step === 4 && 'Personal'}
-                {step === 5 && 'Documents'}
-                {step === 6 && 'Review'}
-              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* Error Alert */}
+        {submissionError && (
+          <div className="bg-red-50 border-l-4 border-red-500 rounded-lg p-4 shadow-sm">
+            <div className="flex items-start gap-3">
+              <div className="flex-shrink-0 text-red-500 mt-0.5">
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
+                </svg>
+              </div>
+              <p className="text-red-700 text-sm font-medium">{submissionError}</p>
             </div>
-          ))}
-        </div>
-      </div>
+          </div>
+        )}
 
-      {submissionError && (
-        <div className="bg-red-50 border border-red-200 rounded-lg p-4">
-          <p className="text-red-800 text-sm">{submissionError}</p>
-        </div>
-      )}
-
-      <Card>
-        <CardHeader>
-          <CardTitle>
-            {currentStep === 1 && 'Enrollee Type'}
-            {currentStep === 2 && 'Academic Information'}
-            {currentStep === 3 && 'Subject Selection'}
-            {currentStep === 4 && 'Personal & Guardian Information'}
-            {currentStep === 5 && 'Document Uploads'}
-            {currentStep === 6 && 'Review & Submit'}
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-6">
+        {/* Form Card */}
+        <Card className="shadow-lg border border-gray-200">
+          <CardHeader className="bg-gradient-to-r from-primary-50 to-secondary-50 border-b border-gray-200">
+            <CardTitle className="text-2xl text-gray-900">
+              {currentStep === 1 && 'Select Enrollee Type'}
+              {currentStep === 2 && 'Academic Information'}
+              {currentStep === 3 && 'Choose Your Subjects'}
+              {currentStep === 4 && 'Personal & Guardian Info'}
+              {currentStep === 5 && 'Upload Documents'}
+              {currentStep === 6 && 'Review & Submit'}
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-8 pt-8">
           {/* Step 1: Enrollee Type */}
           {currentStep === 1 && (
-            <div className="space-y-6">
+            <div className="space-y-8">
               <div className="space-y-4">
-                <Label>Select Enrollee Type *</Label>
+                <Label className="text-base font-semibold text-gray-900">Select Enrollee Type *</Label>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div 
-                    className={`
-                      p-4 border rounded-lg cursor-pointer transition-colors
-                      ${formData.enrolleeType === 'new' 
-                        ? 'bg-primary/10 border-primary' 
-                        : 'hover:bg-muted/50 border-border'
-                      }
-                    `}
-                    onClick={() => updateField('enrolleeType', 'new')}
-                  >
-                    <Checkbox
-                      checked={formData.enrolleeType === 'new'}
-                      onCheckedChange={() => updateField('enrolleeType', 'new')}
-                      className="mr-2"
-                    />
-                    <span className="font-medium">New Student</span>
-                    <p className="text-sm text-muted-foreground mt-1">First time enrolling</p>
-                  </div>
-                  <div 
-                    className={`
-                      p-4 border rounded-lg cursor-pointer transition-colors
-                      ${formData.enrolleeType === 'old' 
-                        ? 'bg-primary/10 border-primary' 
-                        : 'hover:bg-muted/50 border-border'
-                      }
-                    `}
-                    onClick={() => updateField('enrolleeType', 'old')}
-                  >
-                    <Checkbox
-                      checked={formData.enrolleeType === 'old'}
-                      onCheckedChange={() => updateField('enrolleeType', 'old')}
-                      className="mr-2"
-                    />
-                    <span className="font-medium">Old Student</span>
-                    <p className="text-sm text-muted-foreground mt-1">Continuing student</p>
-                  </div>
-                  <div 
-                    className={`
-                      p-4 border rounded-lg cursor-pointer transition-colors
-                      ${formData.enrolleeType === 'transfer' 
-                        ? 'bg-primary/10 border-primary' 
-                        : 'hover:bg-muted/50 border-border'
-                      }
-                    `}
-                    onClick={() => updateField('enrolleeType', 'transfer')}
-                  >
-                    <Checkbox
-                      checked={formData.enrolleeType === 'transfer'}
-                      onCheckedChange={() => updateField('enrolleeType', 'transfer')}
-                      className="mr-2"
-                    />
-                    <span className="font-medium">Transfer Student</span>
-                    <p className="text-sm text-muted-foreground mt-1">Coming from another school</p>
-                  </div>
-                  <div 
-                    className={`
-                      p-4 border rounded-lg cursor-pointer transition-colors
-                      ${formData.enrolleeType === 'cross' 
-                        ? 'bg-primary/10 border-primary' 
-                        : 'hover:bg-muted/50 border-border'
-                      }
-                    `}
-                    onClick={() => updateField('enrolleeType', 'cross')}
-                  >
-                    <Checkbox
-                      checked={formData.enrolleeType === 'cross'}
-                      onCheckedChange={() => updateField('enrolleeType', 'cross')}
-                      className="mr-2"
-                    />
-                    <span className="font-medium">Cross Enrollee</span>
-                    <p className="text-sm text-muted-foreground mt-1">Enrolled in another school</p>
-                  </div>
+                  {[
+                    { key: 'new', title: 'New Student', desc: 'First time enrolling' },
+                    { key: 'old', title: 'Old Student', desc: 'Continuing student' },
+                    { key: 'transfer', title: 'Transfer Student', desc: 'From another school' },
+                    { key: 'cross', title: 'Cross Enrollee', desc: 'Enrolled elsewhere' }
+                  ].map(option => (
+                    <div 
+                      key={option.key}
+                      className={`
+                        p-6 border-2 rounded-lg cursor-pointer transition-all duration-200
+                        ${formData.enrolleeType === option.key 
+                          ? 'border-primary-500 bg-primary-50 shadow-md' 
+                          : 'border-gray-200 bg-white hover:border-primary-300 hover:bg-primary-50/50'
+                        }
+                      `}
+                      onClick={() => updateField('enrolleeType', option.key)}
+                    >
+                      <div className="flex items-start gap-3">
+                        <Checkbox
+                          checked={formData.enrolleeType === option.key}
+                          onCheckedChange={() => updateField('enrolleeType', option.key)}
+                          className="mt-1"
+                        />
+                        <div className="flex-1">
+                          <p className="font-semibold text-gray-900">{option.title}</p>
+                          <p className="text-sm text-gray-600 mt-1">{option.desc}</p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -1096,7 +1070,7 @@ export function EnrollmentForm({ onComplete }) {
                             />
                             <div>
                               <p className="font-medium">{doc.label}</p>
-                              <span className="text-xs text-blue-600">Optional / To Follow</span>
+                              <span className="text-xs text-primary-700">Optional / To Follow</span>
                             </div>
                           </div>
                           {isUploaded && (
@@ -1283,12 +1257,12 @@ export function EnrollmentForm({ onComplete }) {
           )}
 
           {/* Navigation Buttons */}
-          <div className="flex justify-between pt-6">
+          <div className="flex justify-between gap-4 pt-8 border-t border-gray-200">
             <Button
               variant="outline"
               onClick={prevStep}
               disabled={currentStep === 1}
-              className="flex items-center gap-2"
+              className="flex items-center gap-2 px-6 py-2 font-medium border-gray-300 hover:bg-gray-50"
             >
               <ChevronLeft className="w-4 h-4" />
               Previous
@@ -1298,7 +1272,7 @@ export function EnrollmentForm({ onComplete }) {
               <Button
                 onClick={nextStep}
                 disabled={!isStepValid()}
-                className="flex items-center gap-2"
+                className="flex items-center gap-2 px-6 py-2 font-medium bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white shadow-md hover:shadow-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 Next
                 <ChevronRight className="w-4 h-4" />
@@ -1306,15 +1280,26 @@ export function EnrollmentForm({ onComplete }) {
             ) : (
               <Button
                 onClick={handleSubmit}
-                className="flex items-center gap-2"
+                disabled={isSubmitted}
+                className="flex items-center gap-2 px-8 py-2 font-medium bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Submit Enrollment
-                <Check className="w-4 h-4" />
+                {isSubmitted ? (
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                    Submitting...
+                  </>
+                ) : (
+                  <>
+                    Submit Enrollment
+                    <Check className="w-4 h-4" />
+                  </>
+                )}
               </Button>
             )}
           </div>
         </CardContent>
       </Card>
+      </div>
     </div>
   );
 }

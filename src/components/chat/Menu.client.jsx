@@ -23,7 +23,7 @@ export function Menu({ onNewChat, onSelectChat, onDeleteChat }) {
             <div
               key={chat.id}
               className={`flex items-center justify-between p-2 rounded cursor-pointer hover:bg-gray-100 ${
-                currentChatId === chat.id ? 'bg-blue-100' : ''
+                currentChatId === chat.id ? 'bg-primary-50' : ''
               }`}
               onClick={() => onSelectChat(chat.id)}
             >

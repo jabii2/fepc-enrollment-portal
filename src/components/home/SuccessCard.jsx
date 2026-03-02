@@ -53,12 +53,12 @@ export function SuccessCard({ enrollment, onGoBackHome, onStartNewEnrollment }) 
           </div>
         </div>
         
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
-          <h4 className="font-medium text-blue-800 mb-2 flex items-center gap-2">
+        <div className="bg-secondary-50 border border-secondary-100 rounded-lg p-4 mb-6">
+          <h4 className="font-medium text-secondary-700 mb-2 flex items-center gap-2">
             <FileText className="w-4 h-4" />
             Next Steps:
           </h4>
-          <ul className="text-sm text-blue-700 space-y-1">
+          <ul className="text-sm text-secondary-600 space-y-1">
             <li>• You will receive a confirmation email within 24-48 hours</li>
             <li>• Please keep your reference ID for future inquiries</li>
             {(enrollment.enrolleeType === 'new' || enrollment.enrolleeType === 'transfer') && (

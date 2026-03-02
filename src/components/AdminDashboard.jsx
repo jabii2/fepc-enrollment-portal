@@ -260,46 +260,46 @@ export function AdminDashboard({ enrollments, onLogout, onUpdateStatus, onRefres
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 bg-gray-50">
         {/* Stats Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <Card>
+          <Card className="bg-white border-gray-100">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-gray-600">Total Enrollments</p>
                   <p className="text-3xl font-bold">{stats.total}</p>
                 </div>
-                <Users className="w-8 h-8 text-blue-500" />
+                <Users className="w-8 h-8 text-primary-700" />
               </div>
             </CardContent>
           </Card>
           
-          <Card>
+          <Card className="bg-white border-gray-100">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-gray-600">Pending</p>
-                  <p className="text-3xl font-bold text-yellow-600">{stats.pending}</p>
+                  <p className="text-3xl font-bold text-secondary-500">{stats.pending}</p>
                 </div>
-                <BarChart3 className="w-8 h-8 text-yellow-500" />
+                <BarChart3 className="w-8 h-8 text-secondary-500" />
               </div>
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="bg-white border-gray-100">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-gray-600">Approved</p>
                   <p className="text-3xl font-bold text-green-600">{stats.approved}</p>
                 </div>
-                <BarChart3 className="w-8 h-8 text-green-500" />
+                <BarChart3 className="w-8 h-8 text-primary-600" />
               </div>
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="bg-white border-gray-100">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
@@ -314,14 +314,14 @@ export function AdminDashboard({ enrollments, onLogout, onUpdateStatus, onRefres
 
         {/* Additional Stats - SHS and College Breakdown */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-          <Card>
+          <Card className="bg-white border-gray-100">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-gray-600">SHS Students</p>
-                  <p className="text-3xl font-bold text-green-600">{stats.shs}</p>
+                  <p className="text-3xl font-bold text-secondary-600">{stats.shs}</p>
                   <div className="flex gap-4 mt-2 text-sm">
-                    <span className="text-blue-600">
+                    <span className="text-primary-700">
                       <span className="font-medium">Male:</span> {stats.shsMale}
                     </span>
                     <span className="text-pink-600">
@@ -329,19 +329,19 @@ export function AdminDashboard({ enrollments, onLogout, onUpdateStatus, onRefres
                     </span>
                   </div>
                 </div>
-                <GraduationCap className="w-8 h-8 text-green-500" />
+                <GraduationCap className="w-8 h-8 text-primary-600" />
               </div>
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="bg-white border-gray-100">
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
                   <p className="text-sm text-gray-600">College Students</p>
-                  <p className="text-3xl font-bold text-purple-600">{stats.college}</p>
+                  <p className="text-3xl font-bold text-secondary-600">{stats.college}</p>
                   <div className="flex gap-4 mt-2 text-sm">
-                    <span className="text-blue-600">
+                    <span className="text-primary-700">
                       <span className="font-medium">Male:</span> {stats.collegeMale}
                     </span>
                     <span className="text-pink-600">
@@ -349,7 +349,7 @@ export function AdminDashboard({ enrollments, onLogout, onUpdateStatus, onRefres
                     </span>
                   </div>
                 </div>
-                <GraduationCap className="w-8 h-8 text-purple-500" />
+                <GraduationCap className="w-8 h-8 text-secondary-500" />
               </div>
             </CardContent>
           </Card>
@@ -363,7 +363,7 @@ export function AdminDashboard({ enrollments, onLogout, onUpdateStatus, onRefres
         )}
 
         {/* Filters and Actions */}
-        <Card className="mb-6">
+        <Card className="mb-6 bg-white border-gray-100">
           <CardContent className="p-3">
             <div className="flex flex-row items-center gap-2 flex-nowrap overflow-x-auto pb-2">
               {/* Search Bar */}
@@ -677,7 +677,7 @@ export function AdminDashboard({ enrollments, onLogout, onUpdateStatus, onRefres
                                           {enrollmentDocuments.map((doc) => (
                                             <div key={doc.id} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
                                               <div className="flex items-center gap-3">
-                                                <FileText className="w-4 h-4 text-blue-600" />
+                                                <FileText className="w-4 h-4 text-primary-700" />
                                                 <div>
                                                   <p className="font-medium text-sm">{doc.originalFilename || doc.filename}</p>
                                                   <p className="text-xs text-gray-500">
@@ -706,7 +706,7 @@ export function AdminDashboard({ enrollments, onLogout, onUpdateStatus, onRefres
                                       <AlertDialog>
                                         <AlertDialogTrigger asChild>
                                           <Button
-                                            className="bg-green-600 hover:bg-green-700"
+                                            className="bg-primary-600 hover:bg-primary-700 text-white"
                                             disabled={selectedEnrollment.status === 'approved'}
                                           >
                                             Approve

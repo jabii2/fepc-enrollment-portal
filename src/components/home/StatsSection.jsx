@@ -8,7 +8,7 @@ export function StatsSection({ enrollments }) {
       title: 'Total Enrollments',
       value: enrollments.length,
       icon: Users,
-      color: 'text-blue-500'
+      color: 'text-primary-600'
     },
     {
       title: 'Available Programs',
@@ -20,7 +20,7 @@ export function StatsSection({ enrollments }) {
       title: 'Approved Students',
       value: enrollments.filter(e => e.status === 'approved').length,
       icon: Award,
-      color: 'text-purple-500'
+      color: 'text-secondary-500'
     },
     {
       title: 'Pending Review',

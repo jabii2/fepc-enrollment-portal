@@ -2,7 +2,8 @@
 echo Starting FEPC Enrollment Portal Backend Server...
 echo.
 
-cd /d "%~dp0src\backend"
+REM Dito tayo papasok sa folder kung nasaan ang mismong .bat file
+cd /d "%~dp0"
 
 REM Check if PHP is installed in XAMPP
 if not exist "C:\xampp\php\php.exe" (
@@ -17,5 +18,4 @@ echo Press Ctrl+C to stop the server
 echo.
 
 C:\xampp\php\php.exe -S localhost:8080
-
 pause

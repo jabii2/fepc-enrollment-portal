@@ -1,47 +1,29 @@
-/* Date picker icon styling - make it visible */
-input[type="date"]::-webkit-calendar-picker-indicator {
-  color: #374151 !important;
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23374151'%3e%3cpath fill-rule='evenodd' d='M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z' clip-rule='evenodd'/%3e%3c/svg%3e") !important;
-  background-size: 16px 16px !important;
-  background-repeat: no-repeat !important;
-  background-position: center !important;
-  opacity: 1 !important;
-  cursor: pointer !important;
-  filter: none !important;
-  width: 20px !important;
-  height: 20px !important;
+/**
+ * FEPC Enrollment Portal - Custom CSS
+ * Only for styles that Tailwind cannot handle directly
+ * Minimize !important usage to avoid conflicts
+ */
+
+/* ============================================================
+   Smooth Scrolling & Scrollbar Styling
+   ============================================================ */
+
+html {
+  scroll-behavior: smooth;
 }
 
-/* Firefox date picker styling */
-input[type="date"]::-moz-calendar-picker-indicator {
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%23374151'%3e%3cpath fill-rule='evenodd' d='M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z' clip-rule='evenodd'/%3e%3c/svg%3e") !important;
-  background-size: 16px 16px !important;
-  opacity: 1 !important;
-  filter: none !important;
-}
-
-/* Enhanced form styling */
-.form-section {
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(147, 51, 234, 0.05) 100%);
-  border-radius: 12px;
-  padding: 24px;
-  border: 1px solid rgba(59, 130, 246, 0.1);
-}
-
-/* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-track {
   background: #f1f5f9;
-  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb {
   background: #cbd5e1;
-  border-radius: 4px;
+  border-radius: 5px;
   transition: background 0.2s;
 }
 
@@ -49,163 +31,40 @@ input[type="date"]::-moz-calendar-picker-indicator {
   background: #94a3b8;
 }
 
-/* Enhanced animations */
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+/* ============================================================
+   Date Picker Styling - Lightweight
+   ============================================================ */
 
-@keyframes pulse {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.7;
-  }
-}
-
-.animate-slide-in {
-  animation: slideIn 0.5s ease-out;
-}
-
-.animate-pulse-subtle {
-  animation: pulse 2s ease-in-out infinite;
-}
-
-/* Enhanced card hover effects */
-.card-hover {
-  transition: all 0.3s ease;
+input[type="date"]::-webkit-calendar-picker-indicator {
+  color: #0ea5e9;
   cursor: pointer;
 }
 
-.card-hover:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+input[type="date"]::-moz-calendar-picker-indicator {
+  color: #0ea5e9;
+  cursor: pointer;
 }
 
-/* Status indicators */
-.status-pending {
-  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
-  color: #92400e;
-  border: 1px solid #f59e0b;
+/* ============================================================
+   Focus Visible for Accessibility
+   ============================================================ */
+
+:focus-visible {
+  outline: 2px solid #0ea5e9;
+  outline-offset: 2px;
 }
 
-.status-approved {
-  background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
-  color: #065f46;
-  border: 1px solid #10b981;
-}
+/* ============================================================
+   Print Styles
+   ============================================================ */
 
-.status-rejected {
-  background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
-  color: #991b1b;
-  border: 1px solid #ef4444;
-}
-
-/* Mobile responsiveness improvements */
-@media (max-width: 768px) {
-  .mobile-stack {
-    flex-direction: column !important;
-    align-items: stretch !important;
-  }
-  
-  .mobile-full-width {
-    width: 100% !important;
-  }
-  
-  .mobile-text-center {
-    text-align: center !important;
-  }
-  
-  /* Adjust progress bar for mobile */
-  .progress-step-mobile {
-    flex-direction: column !important;
-    gap: 8px !important;
-  }
-  
-  .progress-step-mobile span {
-    font-size: 12px !important;
-  }
-}
-
-/* Enhanced loading states */
-.loading-shimmer {
-  background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
-  background-size: 200% 100%;
-  animation: shimmer 2s infinite;
-}
-
-@keyframes shimmer {
-  0% {
-    background-position: -200% 0;
-  }
-  100% {
-    background-position: 200% 0;
-  }
-}
-
-/* Toast notification enhancements */
-.toast-success {
-  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-  color: white;
-  border: none;
-}
-
-.toast-error {
-  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
-  color: white;
-  border: none;
-}
-
-.toast-warning {
-  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-  color: white;
-  border: none;
-}
-
-/* Form validation enhancements */
-.field-error {
-  border-color: #ef4444 !important;
-  box-shadow: 0 0 0 1px #ef4444 !important;
-}
-
-.field-success {
-  border-color: #10b981 !important;
-  box-shadow: 0 0 0 1px #10b981 !important;
-}
-
-/* Network status indicator */
-.network-status {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 1000;
-  transition: all 0.3s ease;
-}
-
-/* Improved accessibility */
-.focus-visible:focus {
-  outline: 2px solid #3b82f6 !important;
-  outline-offset: 2px !important;
-  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2) !important;
-}
-
-/* Print styles */
 @media print {
   .no-print {
-    display: none !important;
+    display: none;
   }
-  
-  .print-friendly {
-    background: white !important;
-    color: black !important;
-    box-shadow: none !important;
-    border: 1px solid #000 !important;
+
+  body {
+    background-color: white;
+    color: black;
   }
 }
